@@ -1,5 +1,0 @@
-C:\Users\ecalderara\Documents\Visual Studio 2012\Projects\Laborers\Laborers\bin\Debug\Laborers.dll
-C:\Users\ecalderara\Documents\Visual Studio 2012\Projects\Laborers\Laborers\bin\Debug\Laborers.pdb
-C:\Users\ecalderara\Documents\Visual Studio 2012\Projects\Laborers\Laborers\obj\Debug\Laborers.csprojResolveAssemblyReference.cache
-C:\Users\ecalderara\Documents\Visual Studio 2012\Projects\Laborers\Laborers\obj\Debug\Laborers.dll
-C:\Users\ecalderara\Documents\Visual Studio 2012\Projects\Laborers\Laborers\obj\Debug\Laborers.pdb
