@@ -158,5 +158,69 @@ namespace Laborers.Tests
             task.Verify(t => t.Cancel(It.IsAny<Unit>()), Times.Once());
             Assert.AreEqual(1, workplan.Tasks.Count);
         }
+
+
+
+        [TestMethod()]
+        public void Update_MultipleMoveTasks()
+        {
+            UnitWorkPlan workplan = new UnitWorkPlan();
+            IPathResolver resolver = new OpenPathResolver();
+            var taskA = new Tasks.MoveToPositionTask(new Position(5,5,5), resolver);
+            var taskB = new Tasks.MoveToPositionTask(new Position(5,0,3), resolver);
+            var taskC = new Tasks.MoveToPositionTask(new Position(-2, 1, -1), resolver);
+            Unit unit = new Unit();
+
+            workplan.AddTask(taskA);
+            workplan.AddTask(taskB);
+            workplan.AddTask(taskC);
+
+            unit.AssignWorkPlan(workplan);
+            Assert.AreEqual(new Position(0, 0, 0), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(1, 1, 1), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(2, 2, 2), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(3, 3, 3), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(4, 4, 4), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(5, 5, 5), unit.Position); //Arrived
+            unit.Update();
+            Assert.AreEqual(new Position(5, 5, 5), unit.Position); //Finished
+
+            unit.Update();
+            Assert.AreEqual(new Position(5, 4, 4), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(5, 3, 3), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(5, 2, 3), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(5, 1, 3), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(5, 0, 3), unit.Position); //Arrived
+            unit.Update();
+            Assert.AreEqual(new Position(5, 0, 3), unit.Position); //Finished
+
+            unit.Update();
+            Assert.AreEqual(new Position(4, 1, 2), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(3, 1, 1), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(2, 1, 0), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(1, 1, -1), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(0, 1, -1), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(-1, 1, -1), unit.Position);
+            unit.Update();
+            Assert.AreEqual(new Position(-2, 1, -1), unit.Position); //Arrived
+            unit.Update();
+            Assert.AreEqual(new Position(-2, 1, -1), unit.Position); //Finished
+
+            Assert.AreEqual(3, workplan.Tasks.Count);
+        }
     }
 }

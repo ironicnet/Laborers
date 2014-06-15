@@ -7,6 +7,6 @@ namespace Laborers
 {
     public interface IPathResolver
     {
-        Tasks.Path Resolve(Unit unit, Position TargetPosition, Tasks.MoveToPositionTask moveToPositionTask);
+        Path Resolve(Unit unit, Position TargetPosition, Tasks.MoveToPositionTask moveToPositionTask);
     }
 }

@@ -8,8 +8,13 @@ namespace Laborers
     public class Unit
     {
         protected UnitWorkPlan CurrentWorkPlan;
+        public float StepSpeed = 1;
+        public Unit()
+        {
+            Position = new Position();
+        }
 
-        public void Update()
+        public virtual void Update()
         {
             if (CurrentWorkPlan != null)
             {
@@ -17,14 +22,14 @@ namespace Laborers
             }
         }
 
-        public void CancelWork()
+        public virtual void CancelWork()
         {
             if (CurrentWorkPlan != null)
             {
                 CurrentWorkPlan.Cancel();
             }
         }
-        public void AssignWorkPlan(UnitWorkPlan newWorkPlan)
+        public virtual void AssignWorkPlan(UnitWorkPlan newWorkPlan)
         {
             if (CurrentWorkPlan != null)
             {
@@ -33,5 +38,7 @@ namespace Laborers
             CurrentWorkPlan = newWorkPlan;
             CurrentWorkPlan.SetAssignedTo(this);
         }
+
+        public Position Position { get; set; }
     }
 }

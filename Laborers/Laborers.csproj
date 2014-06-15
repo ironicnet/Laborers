@@ -39,11 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OpenPathResolver.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="IPathResolver.cs" />
     <Compile Include="Tasks\MoveToPositionTask.cs" />
-    <Compile Include="Tasks\Path.cs" />
-    <Compile Include="Tasks\PathWaypoint.cs" />
+    <Compile Include="Path.cs" />
+    <Compile Include="PathWaypoint.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkPlanTask.cs" />
