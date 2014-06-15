@@ -56,16 +56,13 @@ namespace LaborersWaveGameProject
 
             EntityManager.Add(isometricCamera);
 
-            var cubes = 10;
+            CreateFloor("Floor", Vector3.Zero, new Vector3(25f, 1f, 25f));
 
-
-            CreateCube(Vector3.Zero, new Vector3(25f, 1f, 25f));
-
-            CreateCube(new Vector3(5,2,1), new Vector3(1f, 1f, 1f));
-            CreateCube(new Vector3(-5, 2, 1), new Vector3(1f, 1f, 1f));
-            CreateCube(new Vector3(-3, 10, 1), new Vector3(1f, 1f, 1f));
-            CreateCube(new Vector3(25, 3, 5), new Vector3(1f, 1f, 1f));
-            CreateCube(new Vector3(0, 1, 0), new Vector3(1f, 1f, 1f));
+            CreateBuilding(new Vector3(5,2,1), new Vector3(1f, 1f, 1f));
+            CreateBuilding(new Vector3(-5, 2, 1), new Vector3(1f, 1f, 1f));
+            CreateBuilding(new Vector3(-3, 10, 1), new Vector3(1f, 1f, 1f));
+            CreateBuilding(new Vector3(25, 3, 5), new Vector3(1f, 1f, 1f));
+            CreateBuilding(new Vector3(0, 1, 0), new Vector3(1f, 1f, 1f));
 
 
             singleUnit = CreateUnit("Unit 0", new Vector3(0f, 1f, 0f), new Vector3(0.2f, 1, 0.2f)); ;
@@ -73,6 +70,7 @@ namespace LaborersWaveGameProject
 
             RenderManager.BackgroundColor = Color.CornflowerBlue;
         }
+
         protected override void Start()
         {
 
@@ -93,36 +91,50 @@ namespace LaborersWaveGameProject
 
             base.Start();
         }
-        private void CreateCube(Vector3 position)
+        private Entity CreateBuilding(Vector3 position)
         {
-            CreateCube("Cube_" + cubeIndex, position, Vector3.One);
+            return CreateBuilding("Cube_" + cubeIndex, position, Vector3.One);
         }
 
-        private void CreateCube(Vector3 position, Vector3 scale)
+        private Entity CreateBuilding(Vector3 position, Vector3 scale)
         {
-            CreateCube("Cube_" + cubeIndex, position, scale);
+            return CreateBuilding("Cube_" + cubeIndex, position, scale);
         }
 
-        private void CreateCube(string cubeName, Vector3 position, Vector3 scale)
+        private Entity CreateFloor(string cubeName, Vector3 position, Vector3 scale)
         {
-            Color color = GetRandomColor();
-
-            var cube = new Entity(cubeName)
+            var floor = new Entity(cubeName)
                                   .AddComponent(new Transform3D() { Position = position, Scale = scale })
                                   .AddComponent(Model.CreateCube())
-                                  .AddComponent(new MaterialsMap(new BasicMaterial(color)))
+                                  .AddComponent(new MaterialsMap(new BasicMaterial(Color.DarkGreen)))
                                   .AddComponent(new ModelRenderer());
 
 
-            EntityManager.Add(cube);
+            EntityManager.Add(floor);
 
             cubeIndex++;
+            return floor;
         }
-        private Entity CreateUnit(string cubeName, Vector3 position, Vector3 scale)
+        private Entity CreateBuilding(string cubeName, Vector3 position, Vector3 scale)
+        {
+            var building = new Entity(cubeName)
+                                  .AddComponent(new BuildingBehavior())
+                                  .AddComponent(new Transform3D() { Position = position, Scale = scale })
+                                  .AddComponent(Model.CreateCube())
+                                  .AddComponent(new MaterialsMap(new BasicMaterial(Color.Gray)))
+                                  .AddComponent(new ModelRenderer());
+
+
+            EntityManager.Add(building);
+
+            cubeIndex++;
+            return building;
+        }
+        private Entity CreateUnit(string unitName, Vector3 position, Vector3 scale)
         {
             Color color = GetRandomColor();
 
-            var unitEntity = new Entity(cubeName)
+            var unitEntity = new Entity(unitName)
                                   .AddComponent(new UnitBehavior())
                                   .AddComponent(new Transform3D() { Position = position, Scale = scale })
                                   .AddComponent(Model.CreateCube())

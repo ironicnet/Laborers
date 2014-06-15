@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug All|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug All\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -39,9 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building.cs" />
+    <Compile Include="IRecipeProvider.cs" />
     <Compile Include="OpenPathResolver.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="IPathResolver.cs" />
+    <Compile Include="RequirementList.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="ResourcePackage.cs" />
     <Compile Include="Tasks\MoveToPositionTask.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="PathWaypoint.cs" />

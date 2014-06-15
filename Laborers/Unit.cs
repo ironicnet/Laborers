@@ -8,7 +8,7 @@ namespace Laborers
     public class Unit
     {
         protected UnitWorkPlan CurrentWorkPlan;
-        public float StepSpeed = 1;
+        public float StepSpeed = 1f;
         public Unit()
         {
             Position = new Position();

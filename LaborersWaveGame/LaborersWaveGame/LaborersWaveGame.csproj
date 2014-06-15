@@ -34,6 +34,16 @@
   <PropertyGroup>
     <ApplicationIcon>Game.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug All|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug All\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PROFILE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="WaveEngine.Adapter" />
     <Reference Include="WaveEngine.Common" />
@@ -57,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LaborersWaveGameProject\LaborersWaveGameProject.csproj">
+      <Project>{28d300d0-0f3c-4469-9679-a30af5583a0a}</Project>
       <Name>LaborersWaveGameProject</Name>
     </ProjectReference>
   </ItemGroup>
