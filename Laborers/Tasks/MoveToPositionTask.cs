@@ -11,6 +11,10 @@ namespace Laborers.Tasks
 {
     public class MoveToPositionTask : WorkPlanTask
     {
+        public override UnitTaskAnimationType AnimationType
+        {
+            get { return UnitTaskAnimationType.Walking; }
+        }
         protected virtual IPathResolver PathResolver { get; set; }
         protected virtual Path Path { get; set; }
 

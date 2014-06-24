@@ -9,6 +9,10 @@ namespace Laborers.Tasks
 {
     public class BuildBuildingTask : WorkPlanTask
     {
+        public override UnitTaskAnimationType AnimationType
+        {
+            get { return UnitTaskAnimationType.Building; }
+        }
         private bool _leaveBuildingOnFinish = true;
 
         public bool LeaveBuildingOnFinish

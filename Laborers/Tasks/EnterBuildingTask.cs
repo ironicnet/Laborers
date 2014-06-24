@@ -13,6 +13,11 @@ namespace Laborers.Tasks
     {
         private Building _targetBuilding;
 
+        public override UnitTaskAnimationType AnimationType
+        {
+            get { return UnitTaskAnimationType.Walking; }
+        }
+
         public Building TargetBuilding
         {
             get { return _targetBuilding; }

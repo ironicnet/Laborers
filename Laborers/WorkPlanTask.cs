@@ -13,5 +13,7 @@ namespace Laborers
         public abstract void Cancel(Unit unit);
 
         public virtual bool HasFinished { get; protected set; }
+
+        public abstract Tasks.UnitTaskAnimationType AnimationType { get; }
     }
 }

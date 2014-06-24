@@ -10,6 +10,7 @@ using Moq;
 using Moq.Protected;
 using Laborers.Behaviors;
 using Laborers.Pathfinding;
+using Laborers.Behaviors.Units;
 
 namespace Laborers.Tasks.Tests
 {

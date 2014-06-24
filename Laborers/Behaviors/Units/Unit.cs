@@ -8,11 +8,19 @@ namespace Laborers.Behaviors.Units
 {
     public class Unit
     {
-        protected UnitWorkPlan CurrentWorkPlan;
+        private UnitWorkPlan _currentWorkPlan;
         public float StepSpeed = 1f;
         public float BaseBuildForce = 0.1f;
         private Building _workingBuilding = null;
         private UnitType _unitType;
+
+
+
+        public UnitWorkPlan CurrentWorkPlan
+        {
+            get { return _currentWorkPlan; }
+            protected set { _currentWorkPlan = value; }
+        }
 
         public UnitType UnitType
         {

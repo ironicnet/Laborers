@@ -10,7 +10,7 @@ namespace Laborers
     {
         public ResourceList GetRequirementsForBuilding(Behaviors.Buildings.BuildingType building)
         {
-            return new ResourceList() { new ResourcePackage(Resource.WorkForce, 10)};
+            return new ResourceList() { new ResourcePackage(Resource.WorkForce, 100)};
         }
     }
 }

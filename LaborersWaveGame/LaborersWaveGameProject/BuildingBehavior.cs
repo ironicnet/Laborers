@@ -40,13 +40,17 @@ namespace LaborersWaveGameProject
             {
                 transform.Position = new Vector3(Building.Position.X, Building.Position.Y, Building.Position.Z);
             }
+            BasicMaterial material = (renderer.MaterialMap.DefaultMaterial as BasicMaterial);
             if (Building.IsBuilt)
             {
-                (renderer.MaterialMap.DefaultMaterial as BasicMaterial).DiffuseColor = Color.Green;
+                material.DiffuseColor = Color.Green;
+                material.Alpha = 1f;
             }
             else
             {
-                (renderer.MaterialMap.DefaultMaterial as BasicMaterial).DiffuseColor = Color.Red;
+                material.ReferenceAlpha = 10.5f;
+                material.DiffuseColor = Color.Red;
+                material.Alpha = 0.3f;
             }
         }
 

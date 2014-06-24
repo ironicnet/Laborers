@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Laborers
 {
-    public struct ResourcePackage
+    public class ResourcePackage
     {
         private Resource _resource;
         private float _amount;
+
         public ResourcePackage(Resource resource)
-            : this()
         {
             _resource = resource;
         }

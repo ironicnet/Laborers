@@ -10,6 +10,11 @@ namespace Laborers.Tasks
 {
     public class LeaveBuildingTask : WorkPlanTask
     {
+
+        public override UnitTaskAnimationType AnimationType
+        {
+            get { return UnitTaskAnimationType.Walking; }
+        }
         public LeaveBuildingTask()
         {
         }

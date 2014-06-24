@@ -10,7 +10,13 @@ namespace Laborers
     public class UnitWorkPlan
     {
         public List<WorkPlanTask> Tasks;
-        protected WorkPlanTask CurrentTask;
+        private WorkPlanTask _currentTask;
+
+        public WorkPlanTask CurrentTask
+        {
+            get { return _currentTask; }
+            protected set { _currentTask = value; }
+        }
         protected Unit AssignedTo;
 
         public UnitWorkPlan()

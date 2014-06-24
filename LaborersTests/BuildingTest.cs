@@ -4,6 +4,7 @@ using Laborers;
 using Moq;
 using Moq.Protected;
 using Laborers.Behaviors;
+using Laborers.Behaviors.Buildings;
 
 namespace LaborersTests
 {

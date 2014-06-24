@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Laborers.Behaviors;
 using Laborers.Pathfinding;
+using Laborers.Behaviors.Units;
 namespace Laborers.Tests
 {
     [TestClass()]

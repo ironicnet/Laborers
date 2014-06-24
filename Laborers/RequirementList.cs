@@ -9,9 +9,17 @@ namespace Laborers
     {
         public ResourcePackage GetPackage(Resource resource)
         {
-            var package = this.FirstOrDefault(r => r.Resource == resource);
-            package.Resource = resource;
-            return package;
+            int index = this.FindIndex(r => r.Resource == resource);
+            if (index > -1)
+            {
+                return this[index];
+            }
+            else
+            {
+                var package = new ResourcePackage(resource);
+                this.Add(package);
+                return package;
+            }
         }
 
 
@@ -26,14 +34,14 @@ namespace Laborers
         }
         public void SetAmount(Resource resource, float amount)
         {
-            if (!this.Any(r => r.Resource == resource))
+            int index = this.FindIndex(r => r.Resource == resource);
+            if (index == -1)
             {
                 this.Add(new ResourcePackage(resource, amount));
             }
             else
             {
-                var package = this.First(r => r.Resource == resource);
-                package.Amount = amount;
+                this[index].Amount = amount;
             }
         }
     }

@@ -68,6 +68,7 @@
     <Compile Include="Pathfinding\PathWaypoint.cs" />
     <Compile Include="Behaviors\Units\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\TaskAnimationType.cs" />
     <Compile Include="WorkPlanTask.cs" />
     <Compile Include="UnitWorkPlan.cs" />
   </ItemGroup>
