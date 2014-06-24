@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Laborers;
 using Moq;
+using Moq.Protected;
+using Laborers.Behaviors;
 
 namespace LaborersTests
 {
@@ -70,8 +72,10 @@ namespace LaborersTests
         [TestMethod]
         public void Building_Update_UpdateConstructionIfIsBuiltIsFalseTest()
         {
+            ResourceList buildingRequirements = new ResourceList();
             var buildingMock = new Mock<Building>();
             buildingMock.CallBase = true;
+            buildingMock.SetupGet(b => b.Requirements).Returns(buildingRequirements);
             buildingMock.SetupGet(b => b.IsBuilt).Returns(false);
             buildingMock.Setup(b => b.UpdateConstruction()).Verifiable();
             buildingMock.Object.Update();
@@ -85,8 +89,10 @@ namespace LaborersTests
         [TestMethod]
         public void Building_Update_UpdateConstructionNeverCalledIfIsBuiltIsTrueTest()
         {
+            ResourceList buildingRequirements = new ResourceList();
             var buildingMock = new Mock<Building>();
             buildingMock.CallBase = true;
+            buildingMock.SetupGet(b => b.Requirements).Returns(buildingRequirements);
             buildingMock.SetupGet(b => b.IsBuilt).Returns(true);
             buildingMock.Object.Update();
 
@@ -100,8 +106,12 @@ namespace LaborersTests
         [TestMethod]
         public void Building_UpdateConstruction_ConstructionCompleteTest()
         {
+            
+            ResourceList buildingRequirements = new ResourceList();
+
             var buildingMock = new Mock<Building>();
             buildingMock.CallBase = true;
+            buildingMock.SetupGet(b => b.Requirements).Returns(buildingRequirements);
             buildingMock.Setup(b => b.ConstructionComplete());
             buildingMock.Object.UpdateConstruction();
 
@@ -117,7 +127,7 @@ namespace LaborersTests
         {
             var buildingMock = new Mock<Building>();
             buildingMock.CallBase = true;
-            buildingMock.SetupSet(b => b.IsBuilt = true).Verifiable();
+            buildingMock.Protected().SetupSet<bool>("IsBuilt",true).Verifiable();
             buildingMock.Object.ConstructionComplete();
 
             buildingMock.Verify();
@@ -131,11 +141,11 @@ namespace LaborersTests
             var buildingRequirements = new ResourceList();
             var buildingMock = new Mock<Building>();
             buildingMock.CallBase = true;
-            buildingMock.SetupSet(b => b.Requirements = buildingRequirements).Verifiable();
+            buildingMock.Protected().SetupSet<ResourceList>("Requirements", buildingRequirements).Verifiable();
 
             
             var recipeProvider = new Mock<IRecipeProvider>(MockBehavior.Strict);
-            recipeProvider.Setup<ResourceList>(r => r.GetRequirementsForBuilding(It.Is<Building>(b => b == buildingMock.Object))).Returns(buildingRequirements);
+            recipeProvider.Setup<ResourceList>(r => r.GetRequirementsForBuilding(It.Is<BuildingType>(b => b == buildingMock.Object.BuildingType))).Returns(buildingRequirements);
 
             buildingMock.Object.UpdateRequirements(recipeProvider.Object);
 
@@ -155,10 +165,10 @@ namespace LaborersTests
             ResourceList currentRequirements = null;
             buildingMock.CallBase = true;
             buildingMock.SetupGet(b => b.Requirements).Returns(currentRequirements).Verifiable();
-            buildingMock.SetupSet(b => b.Requirements = buildingRequirements).Verifiable();
+            buildingMock.Protected().SetupSet<ResourceList>("Requirements",buildingRequirements).Verifiable();
 
             var recipeProvider = new Mock<IRecipeProvider>(MockBehavior.Strict);
-            recipeProvider.Setup<ResourceList>(r => r.GetRequirementsForBuilding(It.Is<Building>(b => b == buildingMock.Object))).Returns(buildingRequirements);
+            recipeProvider.Setup<ResourceList>(r => r.GetRequirementsForBuilding(It.Is<BuildingType>(b => b == buildingMock.Object.BuildingType))).Returns(buildingRequirements);
 
             buildingMock.Object.CheckRequirements(recipeProvider.Object);
 

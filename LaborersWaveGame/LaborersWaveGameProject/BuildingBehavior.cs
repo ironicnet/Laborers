@@ -1,4 +1,6 @@
 ﻿using Laborers;
+using Laborers.Behaviors;
+using Laborers.Behaviors.Buildings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +33,6 @@ namespace LaborersWaveGameProject
             renderer = this.Owner.FindComponent<ModelRenderer>();
             Building.Position = new Position(transform.Position.X, transform.Position.Y, transform.Position.Z);
         }
-
         protected override void Update(TimeSpan gameTime)
         {
             Building.Update();
@@ -47,6 +48,11 @@ namespace LaborersWaveGameProject
             {
                 (renderer.MaterialMap.DefaultMaterial as BasicMaterial).DiffuseColor = Color.Red;
             }
+        }
+
+        internal void Init()
+        {
+            Building.Init();
         }
     }
 }

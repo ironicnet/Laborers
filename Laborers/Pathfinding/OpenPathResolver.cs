@@ -1,11 +1,13 @@
-﻿using Laborers.Tasks;
+﻿using Laborers.Behaviors;
+using Laborers.Behaviors.Units;
+using Laborers.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Laborers
+namespace Laborers.Pathfinding
 {
     public class OpenPathResolver : IPathResolver
     {

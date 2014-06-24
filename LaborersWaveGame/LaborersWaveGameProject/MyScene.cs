@@ -32,6 +32,7 @@ using WaveEngine.Framework.Services;
 using WaveEngine.Components.Graphics3D;
 using Laborers.Tasks;
 using Laborers;
+using Laborers.Pathfinding;
 
 namespace LaborersWaveGameProject
 {
@@ -39,6 +40,13 @@ namespace LaborersWaveGameProject
     {
         private int cubeIndex = 0;
         private Entity singleUnit;
+
+        Entity buildingEntity1;
+        Entity buildingEntity2;
+        Entity buildingEntity3;
+        Entity buildingEntity4;
+        Entity buildingEntity5;
+
 
         protected override void CreateScene()
         {
@@ -58,11 +66,11 @@ namespace LaborersWaveGameProject
 
             CreateFloor("Floor", Vector3.Zero, new Vector3(25f, 1f, 25f));
 
-            CreateBuilding(new Vector3(5,2,1), new Vector3(1f, 1f, 1f));
-            CreateBuilding(new Vector3(-5, 2, 1), new Vector3(1f, 1f, 1f));
-            CreateBuilding(new Vector3(-3, 10, 1), new Vector3(1f, 1f, 1f));
-            CreateBuilding(new Vector3(25, 3, 5), new Vector3(1f, 1f, 1f));
-            CreateBuilding(new Vector3(0, 1, 0), new Vector3(1f, 1f, 1f));
+            buildingEntity1 = CreateBuilding(new Vector3(5, 2, 1),    new Vector3(1f, 1f, 1f), new BuildingBehavior());
+            buildingEntity2 = CreateBuilding(new Vector3(-5, 2, 1),   new Vector3(1f, 1f, 1f), new BuildingBehavior());
+            buildingEntity3 = CreateBuilding(new Vector3(-3, 10, 1),  new Vector3(1f, 1f, 1f), new BuildingBehavior());
+            buildingEntity4 = CreateBuilding(new Vector3(25, 3, 5),   new Vector3(1f, 1f, 1f), new BuildingBehavior());
+            buildingEntity5 = CreateBuilding(new Vector3(0, 1, 0),    new Vector3(1f, 1f, 1f), new BuildingBehavior());
 
 
             singleUnit = CreateUnit("Unit 0", new Vector3(0f, 1f, 0f), new Vector3(0.2f, 1, 0.2f)); ;
@@ -73,32 +81,51 @@ namespace LaborersWaveGameProject
 
         protected override void Start()
         {
+            GameManager.RecipeProvider = new Laborers.BaseRecipeProvider();
+            GameManager.Init();
+            buildingEntity1.FindComponent<BuildingBehavior>().Init();
+            buildingEntity2.FindComponent<BuildingBehavior>().Init();
+            buildingEntity3.FindComponent<BuildingBehavior>().Init();
+            buildingEntity4.FindComponent<BuildingBehavior>().Init();
+            buildingEntity5.FindComponent<BuildingBehavior>().Init();
 
             IPathResolver pathResolver = new OpenPathResolver();
             UnitBehavior unitBehavior = singleUnit.FindComponent<UnitBehavior>();
             Laborers.UnitWorkPlan workPlan = new Laborers.UnitWorkPlan();
-            workPlan.AddTask(new MoveToPositionTask(new Laborers.Position(5, 2, 1), pathResolver));
-
-            workPlan.AddTask(new MoveToPositionTask(new Laborers.Position(-5, 2, 1), pathResolver));
-
-            workPlan.AddTask(new MoveToPositionTask(new Laborers.Position(-3, 10, 3), pathResolver));
-
-            workPlan.AddTask(new MoveToPositionTask(new Laborers.Position(25, 3, 5), pathResolver));
-
-            workPlan.AddTask(new MoveToPositionTask(new Laborers.Position(0, 1, 0), pathResolver));
+            var building1 = buildingEntity1.FindComponent<BuildingBehavior>().Building;
+            var building2 = buildingEntity2.FindComponent<BuildingBehavior>().Building;
+            var building3 = buildingEntity3.FindComponent<BuildingBehavior>().Building;
+            var building4 = buildingEntity4.FindComponent<BuildingBehavior>().Building;
+            var building5 = buildingEntity5.FindComponent<BuildingBehavior>().Building;
+            workPlan.AddTask(new MoveToPositionTask(building1.Position, pathResolver));
+            workPlan.AddTask(new EnterBuildingTask(ref building1));
+            workPlan.AddTask(new BuildBuildingTask());
+            workPlan.AddTask(new MoveToPositionTask(building2.Position, pathResolver));
+            workPlan.AddTask(new EnterBuildingTask(ref building2));
+            workPlan.AddTask(new BuildBuildingTask());
+            workPlan.AddTask(new MoveToPositionTask(building3.Position, pathResolver));
+            workPlan.AddTask(new EnterBuildingTask(ref building3));
+            workPlan.AddTask(new BuildBuildingTask());
+            workPlan.AddTask(new MoveToPositionTask(building4.Position, pathResolver));
+            workPlan.AddTask(new EnterBuildingTask(ref building4));
+            workPlan.AddTask(new BuildBuildingTask());
+            workPlan.AddTask(new MoveToPositionTask(building5.Position, pathResolver));
+            workPlan.AddTask(new EnterBuildingTask(ref building5));
+            workPlan.AddTask(new BuildBuildingTask());
+            workPlan.AddTask(new MoveToPositionTask(new Position(0,0,0), pathResolver));
 
             unitBehavior.Unit.AssignWorkPlan(workPlan);
 
             base.Start();
         }
-        private Entity CreateBuilding(Vector3 position)
+        private Entity CreateBuilding(Vector3 position, BuildingBehavior buildingBehavior)
         {
-            return CreateBuilding("Cube_" + cubeIndex, position, Vector3.One);
+            return CreateBuilding("Cube_" + cubeIndex, position, Vector3.One, buildingBehavior);
         }
 
-        private Entity CreateBuilding(Vector3 position, Vector3 scale)
+        private Entity CreateBuilding(Vector3 position, Vector3 scale, BuildingBehavior buildingBehavior)
         {
-            return CreateBuilding("Cube_" + cubeIndex, position, scale);
+            return CreateBuilding("Cube_" + cubeIndex, position, scale, buildingBehavior);
         }
 
         private Entity CreateFloor(string cubeName, Vector3 position, Vector3 scale)
@@ -115,10 +142,10 @@ namespace LaborersWaveGameProject
             cubeIndex++;
             return floor;
         }
-        private Entity CreateBuilding(string cubeName, Vector3 position, Vector3 scale)
+        private Entity CreateBuilding(string cubeName, Vector3 position, Vector3 scale, BuildingBehavior buildingBehavior)
         {
             var building = new Entity(cubeName)
-                                  .AddComponent(new BuildingBehavior())
+                                  .AddComponent(buildingBehavior)
                                   .AddComponent(new Transform3D() { Position = position, Scale = scale })
                                   .AddComponent(Model.CreateCube())
                                   .AddComponent(new MaterialsMap(new BasicMaterial(Color.Gray)))

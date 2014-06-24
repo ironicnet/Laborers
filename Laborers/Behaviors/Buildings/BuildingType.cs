@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Laborers
+namespace Laborers.Behaviors.Buildings
 {
-    public enum Resource
+    public enum BuildingType
     {
-        WorkForce = 0x01 //The WorkForce is a resource!
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Laborers;
 using Moq;
+using Laborers.Behaviors;
 
 namespace LaborersTests
 {

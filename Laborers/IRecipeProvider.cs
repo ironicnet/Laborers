@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Laborers.Behaviors;
+using Laborers.Behaviors.Buildings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +9,6 @@ namespace Laborers
 {
     public interface IRecipeProvider
     {
-        ResourceList GetRequirementsForBuilding(Building building);
+        ResourceList GetRequirementsForBuilding(BuildingType building);
     }
 }

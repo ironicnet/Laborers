@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Laborers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Laborers.Behaviors;
+using Laborers.Pathfinding;
 namespace Laborers.Tests
 {
     [TestClass()]
