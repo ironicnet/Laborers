@@ -14,6 +14,8 @@ public class UnitBehavior : MonoBehaviour
 
 	protected GameObject _graphics;
 	protected Animator _animator;
+	public float StepSpeed = 0.01f;
+	public float BuildForce = 0.2f;
 
     public UnitBehavior()
     {
@@ -24,7 +26,8 @@ public class UnitBehavior : MonoBehaviour
 	{
 		_graphics = transform.GetChild(0).gameObject;
 		_animator = _graphics.GetComponent<Animator>();
-        Unit.StepSpeed = 0.02f;
+		Unit.StepSpeed = StepSpeed;
+		Unit.BaseBuildForce = BuildForce;
         Unit.Position = new Position(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
 
@@ -54,20 +57,23 @@ public class UnitBehavior : MonoBehaviour
             _currentAnimationType = UnitTaskAnimationType.Idle;
         }
 
-        Material unitMaterial = transform.GetChild(0).renderer.material;
-
-        switch (_currentAnimationType)
-        {
-            case UnitTaskAnimationType.Idle:
-                unitMaterial.color = Color.blue;
-                break;
-            case UnitTaskAnimationType.Walking:
-                unitMaterial.color = Color.cyan;
-                break;
-            case UnitTaskAnimationType.Building:
-                unitMaterial.color = Color.red;
-                break;
-        }
-		_animator.SetInteger("State", (int)_currentAnimationType);
+//        Material unitMaterial = transform.GetChild(0).renderer.material;
+//
+//        switch (_currentAnimationType)
+//        {
+//            case UnitTaskAnimationType.Idle:
+//                unitMaterial.color = Color.blue;
+//                break;
+//            case UnitTaskAnimationType.Walking:
+//                unitMaterial.color = Color.cyan;
+//                break;
+//            case UnitTaskAnimationType.Building:
+//                unitMaterial.color = Color.red;
+//                break;
+//        }
+		if (_lastAnimationType!=_currentAnimationType)
+		{
+			_animator.SetInteger("State", (int)_currentAnimationType);
+		}
     }
 }

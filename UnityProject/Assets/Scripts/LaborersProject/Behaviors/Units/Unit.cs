@@ -9,7 +9,13 @@ namespace Laborers.Behaviors.Units
     public class Unit
     {
         private UnitWorkPlan _currentWorkPlan;
+		/// <summary>
+		/// The step speed. Default to 1f.
+		/// </summary>
         public float StepSpeed = 1f;
+		/// <summary>
+		/// The base build force. Default to 0.1f
+		/// </summary>
         public float BaseBuildForce = 0.1f;
         private Building _workingBuilding = null;
         private UnitType _unitType;
