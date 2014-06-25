@@ -7,8 +7,8 @@ namespace Laborers.Tasks
 {
     public enum UnitTaskAnimationType
     {
-        Idle,
-        Walking,
-        Building
+        Idle = 0,
+        Walking = 1,
+        Building = 2
     }
 }

@@ -6,13 +6,14 @@ using Laborers.Behaviors.Units;
 
 public class UnitBehavior : MonoBehaviour
 {
-
-
     protected WorkPlanTask _lastTask;
     protected WorkPlanTask _currentTask;
     protected UnitTaskAnimationType _lastAnimationType;
     protected UnitTaskAnimationType _currentAnimationType;
     public Unit Unit;
+
+	protected GameObject _graphics;
+	protected Animator _animator;
 
     public UnitBehavior()
     {
@@ -20,7 +21,9 @@ public class UnitBehavior : MonoBehaviour
     }
     // Use this for initialization
     void Start()
-    {
+	{
+		_graphics = transform.GetChild(0).gameObject;
+		_animator = _graphics.GetComponent<Animator>();
         Unit.StepSpeed = 0.02f;
         Unit.Position = new Position(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
@@ -50,27 +53,21 @@ public class UnitBehavior : MonoBehaviour
             _lastAnimationType = _currentAnimationType;
             _currentAnimationType = UnitTaskAnimationType.Idle;
         }
-		if (Unit.WorkingBuilding==null)
-		{
-			transform.GetChild(0).gameObject.SetActive(true);
-	        Material unitMaterial = transform.GetChild(0).renderer.material;
-	
-	        switch (_currentAnimationType)
-	        {
-	            case UnitTaskAnimationType.Idle:
-	                unitMaterial.color = Color.blue;
-	                break;
-	            case UnitTaskAnimationType.Walking:
-	                unitMaterial.color = Color.cyan;
-	                break;
-	            case UnitTaskAnimationType.Building:
-	                unitMaterial.color = Color.red;
-	                break;
-	        }
-		}
-		else
-		{
-			transform.GetChild(0).gameObject.SetActive(false);
-		}
+
+        Material unitMaterial = transform.GetChild(0).renderer.material;
+
+        switch (_currentAnimationType)
+        {
+            case UnitTaskAnimationType.Idle:
+                unitMaterial.color = Color.blue;
+                break;
+            case UnitTaskAnimationType.Walking:
+                unitMaterial.color = Color.cyan;
+                break;
+            case UnitTaskAnimationType.Building:
+                unitMaterial.color = Color.red;
+                break;
+        }
+		_animator.SetInteger("State", (int)_currentAnimationType);
     }
 }
