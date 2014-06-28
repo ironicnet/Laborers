@@ -1,22 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ComponentBehaviors\UnitBehavior.cs">
-    <Files>
-      <File FileName="Assets\Scripts\ComponentBehaviors\UnitBehavior.cs" Line="18" Column="31" />
-      <File FileName="Assets\Scripts\ComponentBehaviors\GameManager.cs" Line="10" Column="62" />
-      <File FileName="Assets\Scripts\ComponentBehaviors\PrototypeScene.cs" Line="16" Column="35" />
-      <File FileName="Assets\Scripts\ComponentBehaviors\BuildingBehavior.cs" Line="31" Column="4" />
-      <File FileName="Assets\Scripts\LaborersProject\Behaviors\Buildings\Building.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LaborersProject\Tasks\MoveToPositionTask.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LaborersProject\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LaborersProject\Tasks\TaskAnimationType.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LaborersProject\Behaviors\Units\Unit.cs" Line="17" Column="44" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint hitAction="PrintExpression" traceExpression="{graphicsB.gameObject.name}" file="D:\Proyectos\Laborers\UnityProject\Assets\Scripts\ComponentBehaviors\BuildingBehavior.cs" line="33" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

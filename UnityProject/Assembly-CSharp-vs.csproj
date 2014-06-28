@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\LaborersProject\BaseRecipeProvider.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Buildings\Building.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Buildings\BuildingType.cs" />
+     <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Units\ToolType.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Units\Unit.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Units\UnitType.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\GameManager.cs" />
@@ -72,6 +73,10 @@
      <Compile Include="Assets\Scripts\LaborersProject\Tasks\Path.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Tasks\PathWaypoint.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Tasks\TaskAnimationType.cs" />
+     <Compile Include="Assets\Scripts\LaborersProject\Terrain\BlockInfo.cs" />
+     <Compile Include="Assets\Scripts\LaborersProject\Terrain\Chunk.cs" />
+     <Compile Include="Assets\Scripts\LaborersProject\Terrain\Noise.cs" />
+     <Compile Include="Assets\Scripts\LaborersProject\Terrain\World.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\UnitWorkPlan.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\WorkPlanTask.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
