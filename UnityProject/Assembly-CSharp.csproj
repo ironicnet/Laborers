@@ -39,19 +39,21 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/programas/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>d:/Programas/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/programas/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>d:/Programas/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ComponentBehaviors\BuildingBehavior.cs" />
      <Compile Include="Assets\Scripts\ComponentBehaviors\GameManager.cs" />
      <Compile Include="Assets\Scripts\ComponentBehaviors\PrototypeScene.cs" />
+     <Compile Include="Assets\Scripts\ComponentBehaviors\SelectionManager.cs" />
      <Compile Include="Assets\Scripts\ComponentBehaviors\UnitBehavior.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\BaseRecipeProvider.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Buildings\Building.cs" />
+     <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Buildings\BuildingData.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Buildings\BuildingType.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Units\ToolType.cs" />
      <Compile Include="Assets\Scripts\LaborersProject\Behaviors\Units\Unit.cs" />

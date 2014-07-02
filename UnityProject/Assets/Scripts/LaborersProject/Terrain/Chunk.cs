@@ -158,6 +158,7 @@ namespace Laborers.Terrain
 			
 						Cube (texturePos);
 				}
+				
 				public void GenerateMesh ()
 				{
 			
